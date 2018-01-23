@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<freshMvvm:FreshBaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:freshMvvm="clr-namespace:FreshMvvm;assembly=FreshMvvm"
+             xmlns:pages="clr-namespace:B4.EE.AlderweireldR.AfsprakenApp"
+             xmlns:behaviors="clr-namespace:B4.EE.AlderweireldR.AfsprakenApp.Behaviors"
+             xmlns:converters="clr-namespace:B4.EE.AlderweireldR.AfsprakenApp.Converters"
+             x:Class="B4.EE.AlderweireldR.AfsprakenApp.Pages.AgendaPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgsConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="Welkom bij de Afsprakenapp!" 
+                    HorizontalOptions="CenterAndExpand" />
+                <Label Text="Maak een afspraak bij Dr. Alderweireld:" />
+                <DatePicker Date="{Binding HuidigeDatum}" MinimumDate="{Binding MinimumDatum}" MaximumDate="{Binding MaximumDatum}" />
+                <ListView ItemsSource="{Binding Afspraken}">
+                    <ListView.Behaviors>
+                        <behaviors:EventToCommandBehavior
+                            EventName="ItemTapped"
+                            Command="{Binding MaakAfspraakCommand}"
+                            EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}" />
+                    </ListView.Behaviors>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <!--<TextCell Text="{Binding Afspraakdatum}" Grid.Column="2" Grid.Row="1" />-->
+                                        <Label Text="{Binding Uur}" Grid.Column="1" Grid.Row="1" />
+                                        <Label Text="{Binding StatusDisplay}" Grid.Column="2" Grid.Row="1" />
+                                    </Grid>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Wenst u een afspraak te annuleren? Gelieve ons te contacteren op het nummer " />
+                    <Button Text="{Binding Contact}" Command="{Binding Bel}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Ter info: na 21 uur en tijdens weekends neemt u best contact om met de wachtdienst op het nummer " />
+                    <Button Text="{Binding Contact}" Command="{Binding Bel}"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</freshMvvm:FreshBaseContentPage>

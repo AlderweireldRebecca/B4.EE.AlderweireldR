@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="B4.EE.AlderweireldR.AfsprakenApp.Pages.AgendaDetailPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="Vul uw gegevens in:" HorizontalOptions="CenterAndExpand" />
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Afspraakdatum: " FontAttributes="Bold"/>
+                    <Label Text="{Binding AfspraakDatum, StringFormat='{0:dd/MM/yyyy}'}" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Uur: " FontAttributes="Bold" />
+                    <Label Text="{Binding AfspraakDatum, StringFormat='{0:HH:mm}'}" />
+                </StackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Text="Naam:" Grid.Column="1" Grid.Row="1" />
+                    <Entry x:Name="txtNaam" Text="{Binding AfspraakNaam}" Placeholder="Geef uw naam in." Grid.Column="2" Grid.Row="1" />
+                    <Label x:Name="lblErrorNaam" Text="{Binding AfspraakNaamError}" IsVisible="{Binding AfspraakNaamErrorVisible}" Grid.Column="2" Grid.Row="2"/>
+                    <Label Text="Voornaam:" Grid.Column="1" Grid.Row="3" />
+                    <Entry x:Name="txtVoornaam" Text="{Binding AfspraakVoornaam}" Placeholder="Geef uw voornaam in." Grid.Column="2" Grid.Row="3" />
+                    <Label x:Name="lblErrorVoornaam" Text="{Binding AfspraakVoornaamError}" Grid.Column="2" Grid.Row="4" />
+                    <Label Text="Geboortedatum:" Grid.Column="1" Grid.Row="5" />
+                    <DatePicker Date="{Binding AfspraakGeboortedatum}" MaximumDate="{Binding AfspraakDatum}" Grid.Column="2" Grid.Row="5" />
+                    <!--<Label x:Name="lblErrorGeboortedatum" Text="{Binding AfspraakGeboortedatumError}" Grid.Column="2" Grid.Row="6" />-->
+                    <!--<Entry />-->
+                    <Label Text="Telefoonnummer:" Grid.Column="1" Grid.Row="7" />
+                    <Entry x:Name="txtTelefoonnummer" Text="{Binding AfspraakTelefoon}" Placeholder="Geef uw telefoonnummer in." Keyboard="Telephone" Grid.Column="2" Grid.Row="7" />
+                    <Label x:Name="lblErrorTelefoonnummer" Text="{Binding AfspraakTelefoonError}" Grid.Column="2" Grid.Row="8" />
+                    <Label Text="E-mailadres" Grid.Column="1" Grid.Row="9" />
+                    <Entry x:Name="txtEmailadres" Text="{Binding AfspraakEmail}" Placeholder="Geef uw e-mailadres in." Keyboard="Email" Grid.Column="2" Grid.Row="9" />
+                    <Label x:Name="lblErrorEmailadres" Text="{Binding AfspraakEmailError}" Grid.Column="2" Grid.Row="10" />
+                </Grid>
+                <Picker x:Name="pGekend" Title="Bent u een gekende patiënt(e)?" SelectedItem="{Binding AfspraakGekend}">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Gekend</x:String>
+                            <x:String>Nieuw</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                <Label x:Name="lblErrorPicker" Text="{Binding AfspraakGekendError}" />
+                <Label Text="Extra info:" />
+                <Entry x:Name="txtExtraInfo" Text="{Binding AfspraakExtra}" Placeholder="Geef extra info in."  />
+                <Label x:Name="lblErrorExtraInfo" Text="{Binding AfspraakExtraError}" />
+                <Button x:Name="btnAfspraakMaken" Text="Maak afspraak" Command="{Binding BewaarAfspraakCommand}" ></Button>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

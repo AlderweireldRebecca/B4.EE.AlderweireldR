@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<freshMvvm:FreshBaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:freshMvvm="clr-namespace:FreshMvvm;assembly=FreshMvvm"
+             xmlns:pages="clr-namespace:B4.EE.AlderweireldR.AfsprakenApp"
+             x:Class="B4.EE.AlderweireldR.AfsprakenApp.Pages.MainPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="Welkom bij de afsprakenapp!"
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand" />
+                <Label Text="Kies uw huisarts om een afspraak te kunnen maken:" />
+                <Label Text="Na 20 uur en tijdens weekends neemt u best contact op met de wachtdienst op het nummer ..." />
+                <!--<ListView ItemsSource="{Binding Dokters}" SelectedItem="{Binding GeselecteerdeDokter}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding Titel}" Detail="{Binding Naam}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>-->
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</freshMvvm:FreshBaseContentPage>
